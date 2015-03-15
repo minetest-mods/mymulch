@@ -1,4 +1,12 @@
+mybricks = {}
+dofile(minetest.get_modpath("mybricks").."/bricks.lua")
+dofile(minetest.get_modpath("mybricks").."/machine.lua")
+dofile(minetest.get_modpath("mybricks").."/register.lua")
 
-dofile(minetest.get_modpath("mymulch").."/mulch.lua")
 
-print("mymulch mod loaded!")
+
+
+
+
+
+
