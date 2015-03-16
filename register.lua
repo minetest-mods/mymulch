@@ -1,81 +1,93 @@
 
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_sandstone", 
-	"Sandstone", 
-	"default_sandstone.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1, not_in_creative_inventory=1}",
-	"default:sandstone"
+mymulch.register_all(--material, description, image
+	"black", 
+	"Black", 
+	"mymulch_black.png"
 	)
 
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_desert_sand", 
-	"Desert Sand", 
-	"default_desert_sand.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:desert_sand"
+mymulch.register_all(--material, description, image
+	"blue", 
+	"Blue", 
+	"mymulch_blue.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_clay", 
-	"Clay", 
-	"default_clay.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:clay"
+
+mymulch.register_all(--material, description, image
+	"brown", 
+	"Brown", 
+	"mymulch_brown.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_cobble", 
-	"Cobble", 
-	"default_cobble.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:cobble"
+
+mymulch.register_all(--material, description, image
+	"cyan", 
+	"Cyan", 
+	"mymulch_cyan.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_stone", 
-	"Stone", 
-	"default_stone.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:stone"
+
+mymulch.register_all(--material, description, image
+	"dark_green", 
+	"Dark Green", 
+	"mymulch_dark_green.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_cactus", 
-	"Cactus", 
-	"default_cactus_side.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:cactus"
+
+mymulch.register_all(--material, description, image
+	"dark_grey", 
+	"Dark Grey", 
+	"mymulch_dark_grey.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_sand", 
-	"Sand", 
-	"default_sand.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:sand"
+
+mymulch.register_all(--material, description, image
+	"green", 
+	"Green", 
+	"mymulch_green.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_desert_stone", 
-	"Desert Stone", 
-	"default_desert_stone.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:desert_stone"
+
+mymulch.register_all(--material, description, image
+	"grey", 
+	"Grey", 
+	"mymulch_grey.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_wood", 
-	"Wood", 
-	"default_wood.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:wood"
+
+mymulch.register_all(--material, description, image
+	"magenta", 
+	"Magenta", 
+	"mymulch_magenta.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_pinewood", 
-	"Pine Wood", 
-	"default_pinewood.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:pinewood"
+
+mymulch.register_all(--material, description, image
+	"orange", 
+	"Orange", 
+	"mymulch_orange.png"
 	)
-mybricks.register_all(--material, description, image, groups, craft item
-	"default_dirt", 
-	"Dirt", 
-	"default_dirt.png",
-	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:dirt"
+
+mymulch.register_all(--material, description, image
+	"pink", 
+	"Pink", 
+	"mymulch_pink.png"
 	)
+
+mymulch.register_all(--material, description, image
+	"red", 
+	"Red", 
+	"mymulch_red.png"
+	)
+
+mymulch.register_all(--material, description, image
+	"violet", 
+	"Violet", 
+	"mymulch_violet.png"
+	)
+
+mymulch.register_all(--material, description, image
+	"white", 
+	"White", 
+	"mymulch_white.png"
+	)
+
+mymulch.register_all(--material, description, image
+	"yellow", 
+	"Yellow", 
+	"mymulch_yellow.png"
+	)
+
 
 
