@@ -23,6 +23,12 @@ minetest.register_node("mymulch:machine", {
 			{-0.5, -0.5, -0.5, 0.5, -0.375, 0.5}, 
 		}
 	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		}
+	},
 
 	after_place_node = function(pos, placer)
 	local meta = minetest.env:get_meta(pos);
@@ -33,7 +39,13 @@ minetest.register_node("mymulch:machine", {
 can_dig = function(pos,player)
 	local meta = minetest.env:get_meta(pos);
 	local inv = meta:get_inventory()
-	if not inv:is_empty("ingot") then
+	if not inv:is_empty("craft1") then
+		return false
+	elseif not inv:is_empty("craft2") then
+		return false
+	elseif not inv:is_empty("craft3") then
+		return false
+	elseif not inv:is_empty("craft4") then
 		return false
 	elseif not inv:is_empty("res") then
 		return false
@@ -229,6 +241,12 @@ minetest.register_node("mymulch:machine_dye", {
 			{-0.0625, 0.25, -0.0625, 0.0625, 0.375, 0.0625}, -- NodeBox8
 		}
 	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.25, 0.5},
+		}
+	},
 
 	after_place_node = function(pos, placer)
 	local meta = minetest.env:get_meta(pos);
@@ -239,7 +257,9 @@ minetest.register_node("mymulch:machine_dye", {
 can_dig = function(pos,player)
 	local meta = minetest.env:get_meta(pos);
 	local inv = meta:get_inventory()
-	if not inv:is_empty("ingot") then
+	if not inv:is_empty("mulch") then
+		return false
+	elseif not inv:is_empty("dye") then
 		return false
 	elseif not inv:is_empty("res") then
 		return false
