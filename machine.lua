@@ -8,7 +8,14 @@
 
 minetest.register_node("mymulch:machine", {
 	description = "Compost Machine",
-	tiles = {"mymulch_machine.png"},
+	tiles = {
+		"mymulch_machine_top.png",
+		"mymulch_machine_bottom.png",
+		"mymulch_machine_right.png",
+		"mymulch_machine_left.png",
+		"mymulch_machine_bottom.png",
+		"mymulch_machine_front.png"
+},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -16,17 +23,73 @@ minetest.register_node("mymulch:machine", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{0.3125, -0.5, -0.5, 0.5, 0.5, 0.5}, 
-			{-0.5, -0.5, -0.5, -0.3125, 0.5, 0.5}, 
-			{-0.5, -0.5, 0.3125, 0.5, 0.5, 0.5}, 
-			{-0.5, -0.5, -0.5, 0.5, 0.5, -0.3125}, 
-			{-0.5, -0.5, -0.5, 0.5, -0.375, 0.5}, 
+			{-0.5, -0.5, 0.4375, 0.5, 0.5, 0.5}, 
+			{-0.5, -0.5, 0.375, -0.4375, 0.4375, 0.4375}, 
+			{-0.5, -0.5, 0.3125, -0.4375, 0.375, 0.375},
+			{-0.5, -0.5, 0.25, -0.4375, 0.3125, 0.3125}, 
+			{-0.5, -0.5, 0.1875, -0.4375, 0.25, 0.25},
+			{-0.5, -0.5, 0.125, -0.4375, 0.1875, 0.1875},
+			{-0.5, -0.5, 0.0625, -0.4375, 0.125, 0.125}, 
+			{-0.5, -0.5, 0, -0.4375, 0.0625, 0.0625}, 
+			{-0.5, -0.5, -0.0625, -0.4375, 0, 0}, 
+			{-0.5, -0.5, -0.125, -0.4375, -0.0625, -0.0625},
+			{-0.5, -0.5, -0.1875, -0.4375, -0.125, -0.125}, 
+			{-0.5, -0.5, -0.25, -0.4375, -0.1875, -0.1875}, 
+			{-0.5, -0.5, -0.3125, -0.4375, -0.25, -0.25}, 
+			{-0.5, -0.5, -0.5, -0.4375, -0.3125, -0.3125}, 
+			{-0.5, -0.5, -0.5, 0.5, -0.3125, -0.4375}, 
+			{0.4375, -0.5, 0.375, 0.5, 0.4375, 0.4375}, 
+			{0.4375, -0.5, 0.3125, 0.5, 0.375, 0.375}, 
+			{0.4375, -0.5, 0.25, 0.5, 0.3125, 0.3125}, 
+			{0.4375, -0.5, 0.1875, 0.5, 0.25, 0.25}, 
+			{0.4375, -0.5, 0.125, 0.5, 0.1875, 0.1875}, 
+			{0.4375, -0.5, 0.0625, 0.5, 0.125, 0.125},
+			{0.4375, -0.5, 0, 0.5, 0.0625, 0.0625}, 
+			{0.4375, -0.5, -0.0625, 0.5, 0, 0},
+			{0.4375, -0.5, -0.125, 0.5, -0.0625, -0.0625}, 
+			{0.4375, -0.5, -0.1875, 0.5, -0.125, -0.125}, 
+			{0.4375, -0.5, -0.25, 0.5, -0.1875, -0.1875}, 
+			{0.4375, -0.5, -0.3125, 0.5, -0.25, -0.25}, 
+			{0.4375, -0.5, -0.5, 0.5, -0.3125, -0.3125}, 
+			{-0.4375, -0.5, -0.4375, 0.4375, -0.3125, 0.4375}, 
+			{-0.5, -0.3125, -0.125, 0.5, -0.125, 0.5}, 
+			{-0.4375, -0.5, 0.125, 0.4375, 0.0625, 0.4375}, 
 		}
 	},
 	selection_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+			{-0.5, -0.5, 0.4375, 0.5, 0.5, 0.5}, 
+			{-0.5, -0.5, 0.375, -0.4375, 0.4375, 0.4375}, 
+			{-0.5, -0.5, 0.3125, -0.4375, 0.375, 0.375},
+			{-0.5, -0.5, 0.25, -0.4375, 0.3125, 0.3125}, 
+			{-0.5, -0.5, 0.1875, -0.4375, 0.25, 0.25},
+			{-0.5, -0.5, 0.125, -0.4375, 0.1875, 0.1875},
+			{-0.5, -0.5, 0.0625, -0.4375, 0.125, 0.125}, 
+			{-0.5, -0.5, 0, -0.4375, 0.0625, 0.0625}, 
+			{-0.5, -0.5, -0.0625, -0.4375, 0, 0}, 
+			{-0.5, -0.5, -0.125, -0.4375, -0.0625, -0.0625},
+			{-0.5, -0.5, -0.1875, -0.4375, -0.125, -0.125}, 
+			{-0.5, -0.5, -0.25, -0.4375, -0.1875, -0.1875}, 
+			{-0.5, -0.5, -0.3125, -0.4375, -0.25, -0.25}, 
+			{-0.5, -0.5, -0.5, -0.4375, -0.3125, -0.3125}, 
+			{-0.5, -0.5, -0.5, 0.5, -0.3125, -0.4375}, 
+			{0.4375, -0.5, 0.375, 0.5, 0.4375, 0.4375}, 
+			{0.4375, -0.5, 0.3125, 0.5, 0.375, 0.375}, 
+			{0.4375, -0.5, 0.25, 0.5, 0.3125, 0.3125}, 
+			{0.4375, -0.5, 0.1875, 0.5, 0.25, 0.25}, 
+			{0.4375, -0.5, 0.125, 0.5, 0.1875, 0.1875}, 
+			{0.4375, -0.5, 0.0625, 0.5, 0.125, 0.125},
+			{0.4375, -0.5, 0, 0.5, 0.0625, 0.0625}, 
+			{0.4375, -0.5, -0.0625, 0.5, 0, 0},
+			{0.4375, -0.5, -0.125, 0.5, -0.0625, -0.0625}, 
+			{0.4375, -0.5, -0.1875, 0.5, -0.125, -0.125}, 
+			{0.4375, -0.5, -0.25, 0.5, -0.1875, -0.1875}, 
+			{0.4375, -0.5, -0.3125, 0.5, -0.25, -0.25}, 
+			{0.4375, -0.5, -0.5, 0.5, -0.3125, -0.3125}, 
+			{-0.4375, -0.5, -0.4375, 0.4375, -0.3125, 0.4375}, 
+			{-0.5, -0.3125, -0.125, 0.5, -0.125, 0.5}, 
+			{-0.4375, -0.5, 0.125, 0.4375, 0.0625, 0.4375}, 
 		}
 	},
 
@@ -49,32 +112,58 @@ can_dig = function(pos,player)
 		return false
 	elseif not inv:is_empty("res") then
 		return false
+	elseif not inv:is_empty("mulch") then
+		return false
+	elseif not inv:is_empty("dye") then
+		return false
+	elseif not inv:is_empty("res2") then
+		return false
 	end
 	return true
 end,
 
 on_construct = function(pos)
 	local meta = minetest.env:get_meta(pos)
-	meta:set_string("formspec", "invsize[10,9;]"..
-		"background[-0.15,-0.25;10.40,9.75;mysiding_background.png]"..
+	meta:set_string("formspec", "invsize[10,10;]"..
+		"background[-0.15,-0.25;10.40,10.75;mysiding_background.png]"..
 		"label[0,0;Mulch:]"..
 		"label[1,1;Craft Mulch]"..
 		"list[current_name;craft1;1,2;1,1; ]"..
 		"list[current_name;craft2;1,3;1,1; ]"..
 		"list[current_name;craft3;2,2;1,1; ]"..
 		"list[current_name;craft4;2,3;1,1; ]"..
-		"button[4,2;1,1;make;Make]"..
-		"label[6,1.5;Output:]"..
-		"list[current_name;res;6,2;1,1;]"..
-		"label[1,4;Add any leaves, sticks, flowers or plants to make mulch]"..
-		"list[current_player;main;1,5;8,4;]")
+		"button[3.5,2;1,1;make;Make]"..
+--		"label[4.5,1.5;Output:]"..
+		"list[current_name;res;3.5,3;1,1;]"..
+
+		"label[6,1;Mulch:]"..
+		"list[current_name;mulch;7,1;1,1;]"..
+		"label[6,2;Dye:]"..
+		"list[current_name;dye;7,2;1,1;]"..
+		"button[7,3;1,1;color;Color]"..
+		"label[6,4;Output:]"..
+		"list[current_name;res2;7,4;1,1;]"..
+
+		"label[8,1;Add Tan]"..
+		"label[8,1.5; colored mulch]"..
+		"label[8,2; and dye to]"..
+		"label[8,2.5; make colored]"..
+		"label[8,3;mulch]"..
+
+		"label[0.5,4;Add any leaves, sticks, flowers]"..
+		"label[0.5,4.5;or plants to make mulch]"..
+
+		"list[current_player;main;1,6;8,4;]")
 	meta:set_string("infotext", "Siding Machine")
 	local inv = meta:get_inventory()
 	inv:set_size("craft1", 1)
 	inv:set_size("craft2", 1)
 	inv:set_size("craft3", 1)
 	inv:set_size("craft4", 1)
+	inv:set_size("mulch", 1)
+	inv:set_size("dye", 1)
 	inv:set_size("res", 1)
+	inv:set_size("res2", 1)
 end,
 
 on_receive_fields = function(pos, formname, fields, sender)
@@ -168,22 +257,35 @@ local items2 = minetest.registered_items[stick2]
 local items3 = minetest.registered_items[stick3]
 local items4 = minetest.registered_items[stick4]
 
+local slot1 = {}
+local slot2 = {}
+local slot3 = {}
+local slot4 = {}
+
 if items1 and items1.groups and items1.groups["stick"] or
    itemf1 and itemf1.groups and itemf1.groups["flora"] or
-   iteml1 and iteml1.groups and iteml1.groups["leaves"] and
-   items2 and items2.groups and items2.groups["stick"] or
+   iteml1 and iteml1.groups and iteml1.groups["leaves"] then
+	slot1 = 1
+end
+if items2 and items2.groups and items2.groups["stick"] or
    itemf2 and itemf2.groups and itemf2.groups["flora"] or
-   iteml2 and iteml2.groups and iteml2.groups["leaves"] and
-   items3 and items3.groups and items3.groups["stick"] or
+   iteml2 and iteml2.groups and iteml2.groups["leaves"] then
+	slot2 = 1
+end
+if items3 and items3.groups and items3.groups["stick"] or
    itemf3 and itemf3.groups and itemf3.groups["flora"] or
-   iteml3 and iteml3.groups and iteml3.groups["leaves"] and
-   items4 and items4.groups and items4.groups["stick"] or
+   iteml3 and iteml3.groups and iteml3.groups["leaves"] then
+	slot3 = 1
+end
+if items4 and items4.groups and items4.groups["stick"] or
    itemf4 and itemf4.groups and itemf4.groups["flora"] or
    iteml4 and iteml4.groups and iteml4.groups["leaves"] then
-				material = "tan"
-				make_okk = "1"
-
+	slot4 = 1
 end
+if slot1 == 1 and slot2 == 1 and slot3 == 1 and slot4 == 1 then
+				make_okk = "1"
+end
+
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
   
@@ -203,96 +305,9 @@ end
 		end
 
 end
-end
 
-
-
-
-})
-
-
---------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
-
-minetest.register_node("mymulch:machine_dye", {
-	description = "Mulch Dye Machine",
-	tiles = {
-		"mymulch_machine_top.png",
-		"mymulch_machine_top.png",
-		"mymulch_machine_side.png",
-		"mymulch_machine_side.png",
-		"mymulch_machine_side.png",
-		"mymulch_machine_side.png",
-		},
-	drawtype = "nodebox",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	groups = {oddly_breakable_by_hand=2, cracky=3, dig_immediate=1},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, -0.375, 0.25, 0.5}, -- NodeBox1
-			{0.375, -0.5, -0.5, 0.5, 0.25, 0.5}, -- NodeBox2
-			{-0.5, -0.5, 0.375, 0.5, 0.25, 0.5}, -- NodeBox3
-			{-0.5, -0.5, -0.5, 0.5, 0.25, -0.375}, -- NodeBox4
-			{-0.5, -0.5, -0.5, 0.5, -0.375, 0.5}, -- NodeBox5
-			{-0.0625, 0.25, 0.375, 0.0625, 0.5, 0.5}, -- NodeBox6
-			{-0.0625, 0.375, -0.0625, 0.0625, 0.5, 0.5}, -- NodeBox7
-			{-0.0625, 0.25, -0.0625, 0.0625, 0.375, 0.0625}, -- NodeBox8
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.25, 0.5},
-		}
-	},
-
-	after_place_node = function(pos, placer)
-	local meta = minetest.env:get_meta(pos);
-			meta:set_string("owner",  (placer:get_player_name() or ""));
-			meta:set_string("infotext",  "Mulch Dying Machine (owned by " .. (placer:get_player_name() or "") .. ")");
-		end,
-
-can_dig = function(pos,player)
-	local meta = minetest.env:get_meta(pos);
-	local inv = meta:get_inventory()
-	if not inv:is_empty("mulch") then
-		return false
-	elseif not inv:is_empty("dye") then
-		return false
-	elseif not inv:is_empty("res") then
-		return false
-	end
-	return true
-end,
-
-on_construct = function(pos)
-	local meta = minetest.env:get_meta(pos)
-	meta:set_string("formspec", "invsize[10,9;]"..
-		"background[-0.15,-0.25;10.40,9.75;mysiding_background.png]"..
-		"label[0,0;Mulch:]"..
-		"label[1,1;Color Mulch]"..
-		"label[1,1.5;Mulch:]"..
-		"list[current_name;mulch;1,2;1,1;]"..
-		"label[2.5,1.5;Dye:]"..
-		"list[current_name;dye;2.5,2;1,1;]"..
-		"button[4,2;1,1;color;Color]"..
-		"label[6,1.5;Output:]"..
-		"list[current_name;res;6,2;1,1;]"..
-		"label[1,3.5;Add Tan colored mulch and dye to make colored mulch]"..
-		"list[current_player;main;1,5;8,4;]")
-	meta:set_string("infotext", "Siding Machine")
-	local inv = meta:get_inventory()
-	inv:set_size("mulch", 1)
-	inv:set_size("dye", 1)
-	inv:set_size("res", 1)
-end,
-
-on_receive_fields = function(pos, formname, fields, sender)
-	local meta = minetest.env:get_meta(pos)
-	local inv = meta:get_inventory()
-
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
 if fields["color"]
 then 
 
@@ -308,111 +323,111 @@ then
 
 
 
-		local ingotstack = inv:get_stack("mulch", 1)
-		local ingotstack2 = inv:get_stack("dye", 1)
-		local resstack = inv:get_stack("res", 1)
+		local ingotstackm = inv:get_stack("mulch", 1)
+		local ingotstackd = inv:get_stack("dye", 1)
+		local resstackd = inv:get_stack("res", 1)
 		local mulch_color = mat
 
 ----------------------------------------------------------------------
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:black" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:black" then
 				material = "black"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:blue" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:blue" then
 				material = "blue"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:brown" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:brown" then
 				material = "brown"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:cyan" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:cyan" then
 				material = "cyan"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:dark_green" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:dark_green" then
 				material = "dark_green"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:dark_grey" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:dark_grey" then
 				material = "dark_grey"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:green" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:green" then
 				material = "green"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:grey" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:grey" then
 				material = "grey"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:magenta" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:magenta" then
 				material = "magenta"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:orange" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:orange" then
 				material = "orange"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:pink" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:pink" then
 				material = "pink"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:red" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:red" then
 				material = "red"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:violet" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:violet" then
 				material = "violet"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:white" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:white" then
 				material = "white"
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="mymulch:mulch_tan" and
-		   ingotstack2:get_name()=="dye:yellow" then
+		if ingotstackm:get_name()=="mymulch:mulch_tan" and
+		   ingotstackd:get_name()=="dye:yellow" then
 				material = "yellow"
 				make_ok = "1"
 		end
 ----------------------------------------------------------------------
 		if make_ok == "1" then
-			local give = {}
-			for i = 0, anzahl-1 do
-				give[i+1]=inv:add_item("res",shape..material)
+			local giveme = {}
+			for j = 0, anzahl-1 do
+				giveme[j+1]=inv:add_item("res2",shape..material)
 			end
-			ingotstack:take_item()
-			inv:set_stack("mulch",1,ingotstack)
-			ingotstack2:take_item()
-			inv:set_stack("dye",1,ingotstack2)
+			ingotstackm:take_item()
+			inv:set_stack("mulch",1,ingotstackm)
+			ingotstackd:take_item()
+			inv:set_stack("dye",1,ingotstackd)
 		end
 
 end
@@ -422,6 +437,9 @@ end
 
 
 })
+
+
+
 --Craft
 
 minetest.register_craft({
@@ -432,15 +450,6 @@ minetest.register_craft({
 			{'group:leaves', "group:wood", 'group:leaves'},		
 		},
 })
-minetest.register_craft({
-		output = 'mymulch:machine_dye',
-		recipe = {
-			{'group:leaves', 'group:wood', 'group:leaves'},
-			{'group:wood', 'bucket:bucket_empty', 'group:wood'},
-			{'group:leaves', "group:wood", 'group:leaves'},		
-		},
-})
-
 
 
 
