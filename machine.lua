@@ -1,10 +1,15 @@
- local material = {}
- local shape = {}
- local make_ok = {}
- local make_okk = {}
- local anzahl = {}
- local anzahlk = {}
- local  mulch = {}
+ local dyet = {}
+ local dyem = {}
+ local dirtt = {}
+ local mulcht = {}
+
+ local make_mulch = {}
+ local make_dye = {}
+ local make_dirt = {}
+
+ local outputmulch = {}
+ local outputdye = {}
+ local outputdirt = {}
 
 minetest.register_node("mymulch:machine", {
 	description = "Compost Machine",
@@ -96,7 +101,7 @@ minetest.register_node("mymulch:machine", {
 	after_place_node = function(pos, placer)
 	local meta = minetest.env:get_meta(pos);
 			meta:set_string("owner",  (placer:get_player_name() or ""));
-			meta:set_string("infotext",  "Mulch Machine (owned by " .. (placer:get_player_name() or "") .. ")");
+			meta:set_string("infotext",  "Composter (owned by " .. (placer:get_player_name() or "") .. ")");
 		end,
 
 can_dig = function(pos,player)
@@ -124,46 +129,51 @@ end,
 
 on_construct = function(pos)
 	local meta = minetest.env:get_meta(pos)
-	meta:set_string("formspec", "invsize[10,10;]"..
-		"background[-0.15,-0.25;10.40,10.75;mysiding_background.png]"..
-		"label[0,0;Mulch:]"..
-		"label[1,1;Craft Mulch]"..
-		"list[current_name;craft1;1,2;1,1; ]"..
-		"list[current_name;craft2;1,3;1,1; ]"..
-		"list[current_name;craft3;2,2;1,1; ]"..
-		"list[current_name;craft4;2,3;1,1; ]"..
-		"button[3.5,2;1,1;make;Make]"..
+	meta:set_string("formspec", "invsize[8,10;]"..
+		"background[-0.15,-0.25;8.40,10.75;mysiding_background.png]"..
+
+		"label[1.5,0.5;  Craft Mulch]"..
+		"list[current_name;craft1;1.5,1;1,1; ]"..
+		"list[current_name;craft2;1.5,2;1,1; ]"..
+		"list[current_name;craft3;2.5,1;1,1; ]"..
+		"list[current_name;craft4;2.5,2;1,1; ]"..
+		"button[4,1;1,1;make;Make]"..
 --		"label[4.5,1.5;Output:]"..
-		"list[current_name;res;3.5,3;1,1;]"..
+		"list[current_name;res;4,2;1,1;]"..
 
-		"label[6,1;Mulch:]"..
-		"list[current_name;mulch;7,1;1,1;]"..
-		"label[6,2;Dye:]"..
-		"list[current_name;dye;7,2;1,1;]"..
-		"button[7,3;1,1;color;Color]"..
-		"label[6,4;Output:]"..
-		"list[current_name;res2;7,4;1,1;]"..
+		"label[5,2; +]"..
+--		"list[current_name;mulch;7,1;1,1;]"..
+		"label[5.5,0.5;  Dye]"..
+		"list[current_name;dye;5.5,1;1,1;]"..
+		"button[5.5,2;1,1;color;Color]"..
 
-		"label[8,1;Add Tan]"..
-		"label[8,1.5; colored mulch]"..
-		"label[8,2; and dye to]"..
-		"label[8,2.5; make colored]"..
-		"label[8,3;mulch]"..
+		"label[5.5,3;Output]"..
+		"list[current_name;res2;5.5,3.5;1,1;]"..
 
-		"label[0.5,4;Add any leaves, sticks, flowers]"..
-		"label[0.5,4.5;or plants to make mulch]"..
 
-		"list[current_player;main;1,6;8,4;]")
-	meta:set_string("infotext", "Siding Machine")
+		"label[0.5,5.5;2 Mulch = 1 Dirt]"..
+		"list[current_name;dirt1;0.5,4.5;1,1;]"..
+		"list[current_name;dirt2;1.5,4.5;1,1;]"..
+		"button[2.5,4.5;1,1;makedirt;Make]"..
+		"list[current_name;res3;3.5,4.5;1,1;]"..
+
+
+		"label[0.5,3;Add any leaves, sticks, flowers]"..
+		"label[1,3.5;or plants to make mulch]"..
+
+		"list[current_player;main;0,6;8,4;]")
+	meta:set_string("infotext", "Composter")
 	local inv = meta:get_inventory()
 	inv:set_size("craft1", 1)
 	inv:set_size("craft2", 1)
 	inv:set_size("craft3", 1)
 	inv:set_size("craft4", 1)
-	inv:set_size("mulch", 1)
+	inv:set_size("dirt1", 1)
+	inv:set_size("dirt2", 1)
 	inv:set_size("dye", 1)
 	inv:set_size("res", 1)
 	inv:set_size("res2", 1)
+	inv:set_size("res3", 1)
 end,
 
 on_receive_fields = function(pos, formname, fields, sender)
@@ -174,9 +184,9 @@ if fields["make"]
 then 
 
 	if fields["make"] then
-		make_okk = "0"
-		anzahlk = "1"
-		mulch = "mymulch:mulch_tan"
+		make_mulch = "0"
+		outputmulch = "1"
+		mulcht = "mymulch:mulch_tan"
 		if inv:is_empty("craft1") or
 		   inv:is_empty("craft2") or
 		   inv:is_empty("craft3") or
@@ -283,16 +293,16 @@ if items4 and items4.groups and items4.groups["stick"] or
 	slot4 = 1
 end
 if slot1 == 1 and slot2 == 1 and slot3 == 1 and slot4 == 1 then
-				make_okk = "1"
+				make_mulch = "1"
 end
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
   
-		if make_okk == "1" then
+		if make_mulch == "1" then
 			local give = {}
-			for i = 0, anzahlk-1 do
-				give[i+1]=inv:add_item("res",mulch)
+			for i = 0, outputmulch-1 do
+				give[i+1]=inv:add_item("res",mulcht)
 			end
 			ingotstack1:take_item()
 			inv:set_stack("craft1",1,ingotstack1)
@@ -308,14 +318,38 @@ end
 
 --------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------
+local mulch_tab = {
+{"black", "Black", "mymulch_black.png"},
+{"blue", "Blue", "mymulch_blue.png"},
+{"brown", "Brown", "mymulch_brown.png"},
+{"cyan", "Cyan", "mymulch_cyan.png"},
+{"dark_green", "Dark Green", "mymulch_dark_green.png"},
+{"dark_grey", "Dark Grey", "mymulch_dark_grey.png"},
+{"green", "Green", "mymulch_green.png"},
+{"grey", "Grey", "mymulch_grey.png"},
+{"magenta", "Magenta", "mymulch_magenta.png"},
+{"orange", "Orange", "mymulch_orange.png"},
+{"pink", "Pink", "mymulch_pink.png"},
+{"red", "Red", "mymulch_red.png"},
+{"violet", "Violet", "mymulch_violet.png"},
+{"white", "White", "mymulch_white.png"},
+{"yellow", "Yellow", "mymulch_yellow.png"},
+{"tan", "Tan", "mymulch_tan.png"},
+}
+for i in ipairs (mulch_tab) do
+	local mat = mulch_tab[i][1]
+	local desc = mulch_tab[i][2]
+	local image = mulch_tab[i][3]
+
+
 if fields["color"]
 then 
 
 	if fields["color"] then
-		make_ok = "0"
-		anzahl = "1"
-		shape = "mymulch:mulch_"
-		if inv:is_empty("mulch") or
+		make_dye = "0"
+		outputdye = "1"
+		dyet = "mymulch:mulch_"
+		if inv:is_empty("res") or
 		inv:is_empty("dye") then
 			return
 		end
@@ -323,118 +357,73 @@ then
 
 
 
-		local ingotstackm = inv:get_stack("mulch", 1)
-		local ingotstackd = inv:get_stack("dye", 1)
-		local resstackd = inv:get_stack("res", 1)
-		local mulch_color = mat
+
+		local dyestack = inv:get_stack("dye", 1)
+		local resstack = inv:get_stack("res", 1)
+		local resstack2 = inv:get_stack("res2", 1)
+
 
 ----------------------------------------------------------------------
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:black" then
-				material = "black"
-				make_ok = "1"
+		if resstack:get_name()=="mymulch:mulch_tan" and
+		   dyestack:get_name()=="dye:"..mat then
+				dyem = mat
+				make_dye = "1"
 		end
 
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:blue" then
-				material = "blue"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:brown" then
-				material = "brown"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:cyan" then
-				material = "cyan"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:dark_green" then
-				material = "dark_green"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:dark_grey" then
-				material = "dark_grey"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:green" then
-				material = "green"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:grey" then
-				material = "grey"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:magenta" then
-				material = "magenta"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:orange" then
-				material = "orange"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:pink" then
-				material = "pink"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:red" then
-				material = "red"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:violet" then
-				material = "violet"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:white" then
-				material = "white"
-				make_ok = "1"
-		end
-
-		if ingotstackm:get_name()=="mymulch:mulch_tan" and
-		   ingotstackd:get_name()=="dye:yellow" then
-				material = "yellow"
-				make_ok = "1"
-		end
 ----------------------------------------------------------------------
-		if make_ok == "1" then
+		if make_dye == "1" then
 			local giveme = {}
-			for j = 0, anzahl-1 do
-				giveme[j+1]=inv:add_item("res2",shape..material)
+			for i = 0, outputdye-1 do
+				giveme[i+1]=inv:add_item("res2",dyet..dyem)
 			end
-			ingotstackm:take_item()
-			inv:set_stack("mulch",1,ingotstackm)
-			ingotstackd:take_item()
-			inv:set_stack("dye",1,ingotstackd)
+			resstack:take_item()
+			inv:set_stack("res",1,resstack)
+			dyestack:take_item()
+			inv:set_stack("dye",1,dyestack)
+		end
+
+
+end
+
+
+if fields["makedirt"]
+then 
+
+	if fields["makedirt"] then
+		make_dirt = "0"
+		outputdirt = "1"
+		dirt = "default:dirt"
+		if inv:is_empty("dirt1") or
+		   inv:is_empty("dirt2") then
+			return
+		end
+	end
+
+
+
+		local dirtstack1 = inv:get_stack("dirt1", 1)
+		local dirtstack2 = inv:get_stack("dirt2", 1)
+		local resstack = inv:get_stack("res3", 1)
+
+		if dirtstack1:get_name()=="mymulch:mulch_"..mat and
+		   dirtstack2:get_name()=="mymulch:mulch_"..mat then
+				make_dirt = "1"
+		end
+
+		if make_dirt == "1" then
+			local giveme = {}
+			for j = 0, outputdirt-1 do
+				giveme[j+1]=inv:add_item("res3",dirt)
+			end
+			dirtstack1:take_item()
+			inv:set_stack("dirt1",1,dirtstack1)
+			dirtstack2:take_item()
+			inv:set_stack("dirt2",1,dirtstack2)
 		end
 
 end
 end
-
-
-
+end
 
 })
 
