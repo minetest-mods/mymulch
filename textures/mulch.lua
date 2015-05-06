@@ -26,7 +26,7 @@ minetest.register_node("mymulch:mulch_"..mat, {
 	description = desc.." Mulch",
 	drawtype = "normal",
 	tiles = {
-		image
+		"mymulch_tan.png^[colorize:"..mat..":120"
 		},
 	paramtype = "light",
 	is_ground_content = true,

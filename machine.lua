@@ -130,7 +130,7 @@ end,
 on_construct = function(pos)
 	local meta = minetest.env:get_meta(pos)
 	meta:set_string("formspec", "invsize[8,10;]"..
-		"background[-0.15,-0.25;8.40,10.75;mysiding_background.png]"..
+		"background[-0.15,-0.25;8.40,10.75;mymulch_background.png]"..
 
 		"label[1.5,0.5;  Craft Mulch]"..
 		"list[current_name;craft1;1.5,1;1,1; ]"..
@@ -138,17 +138,15 @@ on_construct = function(pos)
 		"list[current_name;craft3;2.5,1;1,1; ]"..
 		"list[current_name;craft4;2.5,2;1,1; ]"..
 		"button[4,1;1,1;make;Make]"..
---		"label[4.5,1.5;Output:]"..
 		"list[current_name;res;4,2;1,1;]"..
 
 		"label[5,2; +]"..
---		"list[current_name;mulch;7,1;1,1;]"..
-		"label[5.5,0.5;  Dye]"..
-		"list[current_name;dye;5.5,1;1,1;]"..
-		"button[5.5,2;1,1;color;Color]"..
+		"label[5.5,1.5;  Dye]"..
+		"list[current_name;dye;5.5,2;1,1;]"..
+		"button[5.5,3;1,1;color;Color]"..
 
-		"label[5.5,3;Output]"..
-		"list[current_name;res2;5.5,3.5;1,1;]"..
+		"label[5.5,4;Output]"..
+		"list[current_name;res2;5.5,4.5;1,1;]"..
 
 
 		"label[0.5,5.5;2 Mulch = 1 Dirt]"..
