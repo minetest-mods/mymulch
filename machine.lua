@@ -99,9 +99,11 @@ minetest.register_node("mymulch:machine", {
 	},
 
 	after_place_node = function(pos, placer)
-	local meta = minetest.env:get_meta(pos);
+		local meta = minetest.get_meta(pos)
+		local timer = minetest.get_node_timer(pos)
 			meta:set_string("owner",  (placer:get_player_name() or ""));
 			meta:set_string("infotext",  "Composter (owned by " .. (placer:get_player_name() or "") .. ")");
+		timer:start(10)
 		end,
 
 can_dig = function(pos,player)
@@ -129,8 +131,8 @@ end,
 
 on_construct = function(pos)
 	local meta = minetest.env:get_meta(pos)
-	meta:set_string("formspec", "invsize[8,10;]"..
-		"background[-0.15,-0.25;8.40,10.75;mymulch_background.png]"..
+	meta:set_string("formspec", "invsize[10.5,10;]"..
+		"background[-0.15,-0.25;10.90,10.75;mymulch_background.png]"..
 
 		"label[1.5,0.5;  Craft Mulch]"..
 		"list[current_name;craft1;1.5,1;1,1; ]"..
@@ -155,11 +157,21 @@ on_construct = function(pos)
 		"button[2.5,4.5;1,1;makedirt;Make]"..
 		"list[current_name;res3;3.5,4.5;1,1;]"..
 
+		--Decomposer
+		"label[7.5,0.5.5;Decomposer]"..
+		"label[7.5,1;Insert mulch and over]"..
+		"label[7.5,1.5;time it will become clay]"..
+		"label[8,2.5.5;Mulch]"..
+		"list[current_name;decom;8,3;1,1;]"..
+		"label[8,4;Clay]"..
+		"list[current_name;clay;8,4.5;1,1;]"..
+		
+
 
 		"label[0.5,3;Add any leaves, sticks, flowers]"..
 		"label[1,3.5;or plants to make mulch]"..
 
-		"list[current_player;main;0,6;8,4;]")
+		"list[current_player;main;1,6;8,4;]")
 	meta:set_string("infotext", "Composter")
 	local inv = meta:get_inventory()
 	inv:set_size("craft1", 1)
@@ -172,6 +184,8 @@ on_construct = function(pos)
 	inv:set_size("res", 1)
 	inv:set_size("res2", 1)
 	inv:set_size("res3", 1)
+	inv:set_size("decom", 1)
+	inv:set_size("clay", 1)
 end,
 
 on_receive_fields = function(pos, formname, fields, sender)
@@ -418,10 +432,51 @@ then
 			dirtstack2:take_item()
 			inv:set_stack("dirt2",1,dirtstack2)
 		end
+end
+end
 
+end,
+
+	on_timer = function(pos)
+local mulch_tab = {
+{"black", "Black", "mymulch_black.png"},
+{"blue", "Blue", "mymulch_blue.png"},
+{"brown", "Brown", "mymulch_brown.png"},
+{"cyan", "Cyan", "mymulch_cyan.png"},
+{"dark_green", "Dark Green", "mymulch_dark_green.png"},
+{"dark_grey", "Dark Grey", "mymulch_dark_grey.png"},
+{"green", "Green", "mymulch_green.png"},
+{"grey", "Grey", "mymulch_grey.png"},
+{"magenta", "Magenta", "mymulch_magenta.png"},
+{"orange", "Orange", "mymulch_orange.png"},
+{"pink", "Pink", "mymulch_pink.png"},
+{"red", "Red", "mymulch_red.png"},
+{"violet", "Violet", "mymulch_violet.png"},
+{"white", "White", "mymulch_white.png"},
+{"yellow", "Yellow", "mymulch_yellow.png"},
+{"tan", "Tan", "mymulch_tan.png"},
+}
+for i in ipairs (mulch_tab) do
+	local mat = mulch_tab[i][1]
+	local desc = mulch_tab[i][2]
+	local image = mulch_tab[i][3]
+
+		local timer = minetest.get_node_timer(pos)
+		local timeout = timer:get_timeout()
+		local meta = minetest.get_meta(pos)
+		local inven = meta:get_inventory()
+		local decomp = inven:get_stack("decom",1)
+		local clay = inven:get_stack("clay",1)
+		local deco = decomp:get_name()
+
+		if deco == "mymulch:mulch_"..mat then
+			inven:add_item("clay", "default:clay_lump")
+			decomp:take_item()
+			inven:set_stack("decom",1,decomp)
+		end
+		timer:start(10)
 end
-end
-end
+	end,
 
 })
 
