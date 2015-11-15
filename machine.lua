@@ -107,7 +107,7 @@ minetest.register_node("mymulch:machine", {
 		end,
 
 can_dig = function(pos,player)
-	local meta = minetest.env:get_meta(pos);
+	local meta = minetest.get_meta(pos);
 	local inv = meta:get_inventory()
 	if not inv:is_empty("craft1") then
 		return false
@@ -130,7 +130,7 @@ can_dig = function(pos,player)
 end,
 
 on_construct = function(pos)
-	local meta = minetest.env:get_meta(pos)
+	local meta = minetest.get_meta(pos)
 	meta:set_string("formspec", "invsize[10.5,10;]"..
 		"background[-0.15,-0.25;10.90,10.75;mymulch_background.png]"..
 
@@ -189,7 +189,7 @@ on_construct = function(pos)
 end,
 
 on_receive_fields = function(pos, formname, fields, sender)
-	local meta = minetest.env:get_meta(pos)
+	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 
 if fields["make"]
