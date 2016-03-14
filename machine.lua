@@ -286,22 +286,26 @@ local slot4 = {}
 
 if items1 and items1.groups and items1.groups["stick"] or
    itemf1 and itemf1.groups and itemf1.groups["flora"] or
-   iteml1 and iteml1.groups and iteml1.groups["leaves"] then
+   iteml1 and iteml1.groups and iteml1.groups["leaves"] or
+   ingotstack1:get_name() == "default:dry_shrub" then
 	slot1 = 1
 end
 if items2 and items2.groups and items2.groups["stick"] or
    itemf2 and itemf2.groups and itemf2.groups["flora"] or
-   iteml2 and iteml2.groups and iteml2.groups["leaves"] then
+   iteml2 and iteml2.groups and iteml2.groups["leaves"] or
+   ingotstack2:get_name() == "default:dry_shrub" then
 	slot2 = 1
 end
 if items3 and items3.groups and items3.groups["stick"] or
    itemf3 and itemf3.groups and itemf3.groups["flora"] or
-   iteml3 and iteml3.groups and iteml3.groups["leaves"] then
+   iteml3 and iteml3.groups and iteml3.groups["leaves"] or
+   ingotstack3:get_name() == "default:dry_shrub" then
 	slot3 = 1
 end
 if items4 and items4.groups and items4.groups["stick"] or
    itemf4 and itemf4.groups and itemf4.groups["flora"] or
-   iteml4 and iteml4.groups and iteml4.groups["leaves"] then
+   iteml4 and iteml4.groups and iteml4.groups["leaves"] or
+   ingotstack4:get_name() == "default:dry_shrub" then
 	slot4 = 1
 end
 if slot1 == 1 and slot2 == 1 and slot3 == 1 and slot4 == 1 then
