@@ -23,6 +23,6 @@ group:wood	default:apple   group:wood
 group:leaves    group:wood      group:leaves
 
 
-Licence - WTFPL
+Licence - DWYWPL
 
 Forum - https://forum.minetest.net/viewtopic.php?f=11&t=11780
