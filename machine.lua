@@ -109,21 +109,14 @@ minetest.register_node("mymulch:machine", {
 can_dig = function(pos,player)
 	local meta = minetest.get_meta(pos);
 	local inv = meta:get_inventory()
-	if not inv:is_empty("craft1") then
-		return false
-	elseif not inv:is_empty("craft2") then
-		return false
-	elseif not inv:is_empty("craft3") then
-		return false
-	elseif not inv:is_empty("craft4") then
-		return false
-	elseif not inv:is_empty("res") then
-		return false
-	elseif not inv:is_empty("mulch") then
-		return false
-	elseif not inv:is_empty("dye") then
-		return false
-	elseif not inv:is_empty("res2") then
+	if not inv:is_empty("craft1") or
+	not inv:is_empty("craft2") or
+	not inv:is_empty("craft3") or
+	not inv:is_empty("craft4") or
+	not inv:is_empty("res") or
+	not inv:is_empty("mulch") or
+	not inv:is_empty("dye") or
+	not inv:is_empty("res2") then
 		return false
 	end
 	return true
@@ -320,13 +313,15 @@ end
 			for i = 0, outputmulch-1 do
 				give[i+1]=inv:add_item("res",mulcht)
 			end
-			ingotstack1:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				ingotstack1:take_item()
+				ingotstack2:take_item()
+				ingotstack3:take_item()
+				ingotstack4:take_item()
+			end
 			inv:set_stack("craft1",1,ingotstack1)
-			ingotstack2:take_item()
 			inv:set_stack("craft2",1,ingotstack2)
-			ingotstack3:take_item()
 			inv:set_stack("craft3",1,ingotstack3)
-			ingotstack4:take_item()
 			inv:set_stack("craft4",1,ingotstack4)
 		end
 
@@ -392,9 +387,11 @@ then
 			for i = 0, outputdye-1 do
 				giveme[i+1]=inv:add_item("res2",dyet..dyem)
 			end
-			resstack:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				resstack:take_item()
+				dyestack:take_item()
+			end
 			inv:set_stack("res",1,resstack)
-			dyestack:take_item()
 			inv:set_stack("dye",1,dyestack)
 		end
 
@@ -431,9 +428,11 @@ then
 			for j = 0, outputdirt-1 do
 				giveme[j+1]=inv:add_item("res3",dirt)
 			end
-			dirtstack1:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				dirtstack1:take_item()
+				dirtstack2:take_item()
+			end
 			inv:set_stack("dirt1",1,dirtstack1)
-			dirtstack2:take_item()
 			inv:set_stack("dirt2",1,dirtstack2)
 		end
 end
@@ -475,7 +474,9 @@ for i in ipairs (mulch_tab) do
 
 		if deco == "mymulch:mulch_"..mat then
 			inven:add_item("clay", "default:clay_lump")
-			decomp:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				decomp:take_item()
+			end
 			inven:set_stack("decom",1,decomp)
 		end
 		timer:start(10)
